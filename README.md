@@ -2,7 +2,7 @@
 Take a look at the *Architecture diagram*:
 ![Architecture design](images/architecture.png)
 ### URL OF LOAD BALANCER- 
-- [load Balancer DNS NAME](udagr-WebAp-2NM2YBBQ0VBS-324354963.us-west-2.elb.amazonaws.com)
+- (udagr-WebAp-2NM2YBBQ0VBS-324354963.us-west-2.elb.amazonaws.com)
 
 ### This project deploys a high avaliability web application called *UDAGRAM*
     The deployments consist of two stacks:
