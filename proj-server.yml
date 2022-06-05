@@ -54,7 +54,8 @@ Resources:
       - IpProtocol: tcp
         FromPort: 0
         ToPort: 65535
-        CidrIp: 0.0.0.0/0     
+        CidrIp: 0.0.0.0/0    
+   ### lunch config resources      
   WebAppLaunchConfig:
       Type: AWS::AutoScaling::LaunchConfiguration
       Properties:
@@ -69,7 +70,7 @@ Resources:
         # ToDo: AMI ID of Ubuntu Linux machine. Too get one, try creating a VM from the web console. 
         ImageId: ami-0ee8244746ec5d6d4
         # ToDo: Change the key-pair name, as applicable to you. 
-        KeyName: unlock-key
+        
         SecurityGroups:
         - Ref: WebServerSecGroup
         InstanceType: !Ref InstanceType
@@ -77,6 +78,7 @@ Resources:
         - DeviceName: "/dev/sdk"
           Ebs:
             VolumeSize: '10'
+   #### auto scaling group         
   WebAppGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
@@ -89,6 +91,7 @@ Resources:
       MaxSize: '6'
       TargetGroupARNs: 
         - Ref : WebAppTargetGroup
+   ### load balancer     
   WebAppLB:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
@@ -97,6 +100,7 @@ Resources:
       - Fn::ImportValue: !Sub "${EnvironmentName}-PUB2-SN"
       SecurityGroups:
       - Ref: LBSecGroup
+  ### listener    
   Listener:
     Type: AWS::ElasticLoadBalancingV2::Listener
     Properties:
@@ -108,6 +112,7 @@ Resources:
         Ref: WebAppLB
       Port: '80'
       Protocol: HTTP
+  #### listener rule    
   ALBListenerRule:
       Type: AWS::ElasticLoadBalancingV2::ListenerRule
       Properties:
@@ -119,6 +124,7 @@ Resources:
           Values: [/]
         ListenerArn: !Ref 'Listener'
         Priority: 1
+   ### target group     
   WebAppTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:

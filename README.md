@@ -1,8 +1,17 @@
 ## Project Title - Deploy a high-availability web app(Udagram) using CloudFormation
 Take a look at the *Architecture diagram*:
 ![Architecture design](images/architecture.png)
-### URL/DNS  OF LOAD BALANCER- 
-- (udagr-WebAp-2NM2YBBQ0VBS-324354963.us-west-2.elb.amazonaws.com)
+
+### URL/DNS  OF LOAD BALANCER 
+- udagr-WebAp-2NM2YBBQ0VBS-324354963.us-west-2.elb.amazonaws.com
+### Scripts used
+- ./create.sh   --- script used to create resources
+- ./update.sh .... script used to update resources
+- ./delete.sh .... script used to delete resources
+### other files
+- proj-network.yml and proj-network.json ---- file used to deploy network  resources
+- proj-server.json and proj-server.yml ------- file used to deploy server resources
+- images
 
 ### This project deploys a high avaliability web application called *UDAGRAM*
     The deployments consist of two stacks:
@@ -31,7 +40,7 @@ This stack deploys the following resources:
 - NAT gateway
 ![NAT gateway](images/nat-gw.png)
 
-### UdagramsServer stack
+### Udagram's Server stack
 - A load balancer and web server security groups
 - It also deploys auto scaling groups and its lunch configuration
 - In addition, we have load balancers, listeners, listeners rule,target groups, IAM roles and policies.
@@ -42,11 +51,11 @@ This stack deploys the following resources:
 ![udagram Server  stack](images/udagram-server-console.JPG)
 - Load Balancer
 ![load balancer](images/LOAD-BALANCER.JPG)
-- LB Security group Inbound
+- LB Security group Inbound -- allow all IP from port 80
 ![LB INBOUND SECURITY GROUP](images/LB-SG-INBOUND.JPG)
 - LB Security group Outbound
 ![LB OUTBOUND SECURITY GROUP](images/LB-SG-OUTBOUND.JPG)
-- Webserver Security group Inbound
+- Webserver Security group Inbound allowa all ip from port 80; Allows ssh from port 22
 ![Webserver INBOUND SECURITY GROUP](images/WEBSER-SG-INBOUND.JPG)
 - Webserver Security group Outbound
 ![Webserver OUTBOUND SECURITY GROUP](images/WEBSER-SG-OUTBOUND.JPG)
@@ -72,6 +81,7 @@ Finally login to any webserver on the private subnets(private subnet 2 az2 with 
 ![jumpbox step3](images/step3jumpbox-test-wbseraz1.JPG)
 Finally login to any webserver on the private subnets(private subnet 1 az1 with ip-10.0.2.19)
 ![jumpbox step4](images/step4jumpbox-test2.JPG)
+
 
 
 
